@@ -42,4 +42,12 @@ object UIColors {
      * Grayscale color 900 (#212121)
      */
     var grayscale_900 = Color(0xFF212121)
+
+
+    var lightSteelBlue = Color(0xFFC8D2DE)
+
+    var primaryBrand4 = Color(0xFF5D81FD)
+
+    var primaryBrand100 = Color(0xFFD6DFFF)
+
 }
