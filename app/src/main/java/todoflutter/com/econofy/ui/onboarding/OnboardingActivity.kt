@@ -1,5 +1,6 @@
 package todoflutter.com.econofy.ui.onboarding
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
@@ -12,6 +13,8 @@ import androidx.compose.foundation.text.appendInlineContent
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -30,9 +33,13 @@ import todoflutter.com.ui.extensions.UIColors
 import todoflutter.com.ui.foundation.buttons.domain.CustomButtonUIModel
 import todoflutter.com.ui.foundation.buttons.ui.CustomButton
 import todoflutter.com.ui.foundation.images.domain.CustomLocalImageModel
+import todoflutter.com.ui.foundation.images.domain.FlexibleImageSource
+import todoflutter.com.ui.foundation.images.domain.FlexibleImageUIModel
 import todoflutter.com.ui.foundation.images.ui.CustomLocalImage
 import todoflutter.com.ui.foundation.text.model.TextUIModel
 import todoflutter.com.ui.foundation.text.ui.CustomText
+import todoflutter.com.ui.foundation.textfield.CustomTextField
+import todoflutter.com.ui.foundation.textfield.domain.CustomTextFieldUIModel
 
 class OnboardingActivity : AppCompatActivity() {
 
@@ -44,8 +51,11 @@ class OnboardingActivity : AppCompatActivity() {
     }
 }
 
+@Preview(showSystemUi = true)
 @Composable
 fun OnboardingScreen() {
+
+    val value = remember { mutableStateOf("") }
     Surface(modifier = Modifier.fillMaxSize(), color = Color(0xFF3B4054)) {
         Column(
             modifier = Modifier
@@ -60,7 +70,9 @@ fun OnboardingScreen() {
             Spacer(modifier = Modifier.height(32.dp))
             OnboardingDescription()
             Spacer(modifier = Modifier.height(100.dp))
+
             NavigationDotsAndButtons()
+
         }
     }
 }
@@ -215,10 +227,4 @@ fun TextWithImage() {
         style = TextStyle(fontSize = 16.sp, color = Color.Black),
         inlineContent = mapOf("image" to inlineImage)
     )
-}
-
-@Preview(showSystemUi = true)
-@Composable
-fun PreviewOnboardingScreen() {
-    OnboardingScreen()
 }

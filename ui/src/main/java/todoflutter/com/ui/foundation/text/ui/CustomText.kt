@@ -23,24 +23,24 @@ fun CustomText(
 ) {
 
     var textStyle = uiModel.textStyle
-        if (!enabled) {
-            textStyle = textStyle.copy(color = UIColors.grayscale_600)
-        }
+    if (!enabled) {
+        textStyle = textStyle.copy(color = UIColors.grayscale_600)
+    }
 
-        Text(
-            modifier = modifier,
-            text = uiModel.text,
-            overflow = textOverflow,
-            style = textStyle,
-            maxLines = maxLines ?: Int.MAX_VALUE,
-            textAlign = uiModel.align,
-            textDecoration = uiModel.textDecoration
-        )
+    Text(
+        modifier = modifier,
+        text = uiModel.text,
+        overflow = textOverflow,
+        style = textStyle,
+        maxLines = maxLines ?: Int.MAX_VALUE,
+        textAlign = uiModel.align,
+        textDecoration = uiModel.textDecoration
+    )
 }
 
 @Preview(showSystemUi = true)
 @Composable
-fun PreviewOfCustomText(){
+fun PreviewOfCustomText() {
     Column {
         CustomText(
             uiModel = TextUIModel(
