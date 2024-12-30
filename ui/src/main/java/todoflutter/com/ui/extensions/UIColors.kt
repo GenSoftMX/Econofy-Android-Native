@@ -18,6 +18,7 @@ object UIColors {
      */
     var black = Color(0xFF000000)
 
+    val econofyGrayScale_50 = Color(0xFFF5F9FE)
     /**
      * Grayscale color 300 (#E0E0E0)
      */
@@ -50,4 +51,7 @@ object UIColors {
 
     var primaryBrand100 = Color(0xFFD6DFFF)
 
+    val grayscale_200 = Color(0xFFEEEEEE)
+
+    val grayscale_100 = Color(0xFFF5F5F5)
 }
