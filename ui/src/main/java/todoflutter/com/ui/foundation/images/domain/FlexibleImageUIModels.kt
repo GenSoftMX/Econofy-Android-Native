@@ -4,12 +4,13 @@ import androidx.compose.ui.graphics.DefaultAlpha
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.unit.Dp
 import todoflutter.com.ui.extensions.UIKeys
 
 data class FlexibleImageUIModel(
     val imageSource: FlexibleImageSource,
-    val width: Int = UIKeys.FLEXIBLE_IMAGE_DEFAULT_WIDTH,
-    val height: Int = UIKeys.FLEXIBLE_IMAGE_DEFAULT_HEIGHT,
+    val width: Dp = Dp.Unspecified,
+    val height: Dp = Dp.Unspecified,
     val size: Int = UIKeys.UNDEFINED_SIZE,
     val contentScale: ContentScale = ContentScale.Fit,
     val alpha: Float = DefaultAlpha,
