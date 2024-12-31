@@ -3,4 +3,11 @@
     <string name="title_activity_splash">SplashActivity</string>
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
+
+    <string name="onboarding1_title">Welcome to the App</string>
+    <string name="onboarding1_sub">find the best!</string>
+    <string name="onboarding1_body">Aenean eu lacinia ligula. Quisque eu risus erat. Aenean placerat sollicitudin lectus.</string>
+    <string name="onboarding2_title">The Best Design</string>
+    <string name="onboarding2_sub">Strategy!</string>
+    <string name="onboarding2_body">Aenean eu lacinia ligula. Quisque eu risus erat. Aenean placerat sollicitudin lectus.</string>
 </resources>
