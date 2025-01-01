@@ -22,15 +22,14 @@ enum class AuthenticationDestinations(val key: String) {
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
 fun AuthenticationNavigation(
+    initialLocation: AuthenticationDestinations = AuthenticationDestinations.Authentication,
     navController: NavHostController = rememberNavController(),
-    startDestinations: AuthenticationDestinations = AuthenticationDestinations.Authentication,
-    activity: Activity,
-    isBottomBarVisible: Boolean = true
+    activity: Activity
 ) {
     Scaffold {
         NavHost(
             navController = navController,
-            startDestination = AuthenticationDestinations.Authentication.key
+            startDestination = initialLocation.key
         ) {
             composable(AuthenticationDestinations.Authentication.key) {
                 AuthenticationView(

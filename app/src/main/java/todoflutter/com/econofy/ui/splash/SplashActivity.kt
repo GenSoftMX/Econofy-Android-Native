@@ -1,24 +1,27 @@
 package todoflutter.com.econofy.ui.splash
 
+import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import kotlinx.coroutines.delay
 import todoflutter.com.econofy.R
+import todoflutter.com.econofy.ui.authentication.AuthenticationActivity
 import todoflutter.com.ui.extensions.UIColors
 import todoflutter.com.ui.foundation.images.domain.FlexibleImageSource
 import todoflutter.com.ui.foundation.images.domain.FlexibleImageUIModel
@@ -32,38 +35,43 @@ class SplashViewActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         setContent {
-            SplashView()
+            SplashScreen()
         }
     }
-}
 
-@Preview(showSystemUi = true)
-@Composable
-fun SplashView() {
-    Column(
-        modifier = Modifier.fillMaxSize(),
-        horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center
-    ) {
-        CustomFlexibleImage(
-            uiModel = FlexibleImageUIModel(
-                FlexibleImageSource(
-                    painter = painterResource(
-                        id = R.drawable.econofy
+    @Composable
+    private fun SplashScreen() {
+        val context = LocalContext.current
+
+        LaunchedEffect (Unit) {
+            delay(3000)
+            AuthenticationActivity.newInstance(context)
+            (context as? AppCompatActivity)?.finish()
+        }
+
+        Column(
+            modifier = Modifier.fillMaxSize(),
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Center
+        ) {
+            CustomFlexibleImage(
+                uiModel = FlexibleImageUIModel(
+                    FlexibleImageSource(
+                        painter = painterResource(id = R.drawable.econofy)
                     )
                 )
             )
-        )
-        Spacer(modifier = Modifier.height(32.dp))
-        CustomText(
-            uiModel = TextUIModel(
-                text = stringResource(R.string.app_name),
-                textStyle = TextStyle(
-                    color = UIColors.primaryColor,
-                    fontSize = 32.sp,
-                    fontWeight = FontWeight.SemiBold
+            Spacer(modifier = Modifier.height(32.dp))
+            CustomText(
+                uiModel = TextUIModel(
+                    text = stringResource(R.string.app_name),
+                    textStyle = TextStyle(
+                        color = UIColors.primaryColor,
+                        fontSize = 32.sp,
+                        fontWeight = FontWeight.SemiBold
+                    )
                 )
             )
-        )
+        }
     }
 }
