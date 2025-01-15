@@ -13,10 +13,9 @@ class AuthenticationActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        var initialLocation = intent.extras?.get(START_DESTINATION)
-
-        initialLocation =
-            if (initialLocation == null) AuthenticationDestinations.Authentication else initialLocation as AuthenticationDestinations
+        val initialLocation = intent.getStringExtra(START_DESTINATION)?.let {
+            AuthenticationDestinations.fromKey(it)
+        } ?: AuthenticationDestinations.Authentication
 
         setContent {
             AuthenticationNavigation(

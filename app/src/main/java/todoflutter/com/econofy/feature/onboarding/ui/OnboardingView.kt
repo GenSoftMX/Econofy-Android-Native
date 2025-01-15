@@ -1,5 +1,6 @@
 package todoflutter.com.econofy.feature.onboarding.ui
 
+import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -17,11 +18,14 @@ import androidx.compose.foundation.text.appendInlineContent
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.Placeholder
 import androidx.compose.ui.text.PlaceholderVerticalAlign
@@ -34,7 +38,11 @@ import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LifecycleEventObserver
+import androidx.lifecycle.compose.LocalLifecycleOwner
 import todoflutter.com.econofy.feature.onboarding.viewModel.OnboardingViewModel
+import todoflutter.com.econofy.ui.authentication.AuthenticationActivity
 import todoflutter.com.econofy.ui.extensions.isNotZero
 import todoflutter.com.ui.extensions.UIColors
 import todoflutter.com.ui.foundation.buttons.domain.CustomButtonUIModel
@@ -45,10 +53,24 @@ import todoflutter.com.ui.foundation.images.ui.CustomFlexibleImage
 import todoflutter.com.ui.foundation.text.model.TextUIModel
 import todoflutter.com.ui.foundation.text.ui.CustomText
 
-@Preview(showSystemUi = true)
 @Composable
-fun OnboardingView(viewModel: OnboardingViewModel = OnboardingViewModel()) {
+fun OnboardingView(
+    viewModel: OnboardingViewModel
+) {
     val state by viewModel.state.collectAsState()
+
+    val context = LocalContext.current
+
+    LaunchedEffect(Unit) {
+        viewModel.sideEffect.collect { sideEffect ->
+            when (sideEffect) {
+                is OnboardingViewModel.SideEffect.GoToAuthentication -> {
+                    AuthenticationActivity.newInstance(context = context)
+                    (context as? AppCompatActivity)?.finish()
+                }
+            }
+        }
+    }
 
     Surface(modifier = Modifier.fillMaxSize(), color = Color(0xFF3B4054)) {
         Column(

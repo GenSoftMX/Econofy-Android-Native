@@ -1,10 +1,11 @@
-package todoflutter.com.econofy.ui.main
+package todoflutter.com.econofy
 
 import android.app.Application
+import dagger.hilt.android.HiltAndroidApp
 import todoflutter.com.econofy.ui.extensions.LocalizedStrings
 
-class MainActivity : Application() {
-
+@HiltAndroidApp
+class MainActivity : Application(){
     override fun onCreate() {
         super.onCreate()
 

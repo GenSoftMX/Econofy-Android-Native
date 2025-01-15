@@ -22,3 +22,4 @@ dependencyResolutionManagement {
 rootProject.name = "Econofy"
 include(":app")
 include(":ui")
+include(":core")

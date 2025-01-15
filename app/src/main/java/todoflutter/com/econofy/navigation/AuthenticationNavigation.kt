@@ -16,7 +16,12 @@ import todoflutter.com.econofy.feature.authentication.sign_up.ui.SignUpView
 enum class AuthenticationDestinations(val key: String) {
     Authentication("authentication"),
     SingUp("SignUp"),
-    ForgotPassword("forgotPassword")
+    ForgotPassword("forgotPassword");
+
+    companion object {
+        fun fromKey(key: String): AuthenticationDestinations =
+            entries.firstOrNull { it.key == key } ?: Authentication
+    }
 }
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
